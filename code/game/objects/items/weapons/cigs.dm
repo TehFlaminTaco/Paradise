@@ -96,7 +96,7 @@ LIGHTERS ARE IN LIGHTERS.DM
 		src.lit = 1
 		damtype = "fire"
 		if(reagents.get_reagent_amount("plasma")) // the plasma explodes when exposed to fire
-			var/datum/effect/effect/system/reagents_explosion/e = new()
+			var/datum/effect/system/reagents_explosion/e = new()
 			e.set_up(round(reagents.get_reagent_amount("plasma") / 2.5, 1), get_turf(src), 0, 0)
 			e.start()
 			if(ismob(loc))
@@ -105,7 +105,7 @@ LIGHTERS ARE IN LIGHTERS.DM
 			qdel(src)
 			return
 		if(reagents.get_reagent_amount("fuel")) // the fuel explodes, too, but much less violently
-			var/datum/effect/effect/system/reagents_explosion/e = new()
+			var/datum/effect/system/reagents_explosion/e = new()
 			e.set_up(round(reagents.get_reagent_amount("fuel") / 5, 1), get_turf(src), 0, 0)
 			e.start()
 			if(ismob(loc))
@@ -176,6 +176,13 @@ LIGHTERS ARE IN LIGHTERS.DM
 	processing_objects.Remove(src)
 	qdel(src)
 
+
+/obj/item/clothing/mask/cigarette/random
+
+/obj/item/clothing/mask/cigarette/random/New()
+	..()
+	var/random_reagent = pick("fuel","saltpetre","synaptizine","green_vomit","potass_iodide","msg","lexorin","mannitol","spaceacillin","cryoxadone","holywater","tea","egg","haloperidol","mutagen","omnizine","carpet","aranesp","cryostylane","chocolate","bilk","cheese","rum","blood","charcoal","coffee","ectoplasm","space_drugs","milk","mutadone","antihol","teporone","insulin","salbutamol","toxin")
+	reagents.add_reagent(random_reagent, 10)
 
 /obj/item/clothing/mask/cigarette/joint
 	name = "joint"
